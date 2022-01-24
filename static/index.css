@@ -1,0 +1,64 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0px;
+}
+.text-color {
+	color: #edf5e1 !important;
+}
+.background-primary {
+	background-color: #05386b !important;
+}
+.background-secondary {
+	background-color: #5cdb95 !important;
+}
+.background-secondary-dark {
+	background-color: #379683 !important;
+}
+.background-secondary-light {
+	background-color: #8ee4af !important;
+}
+.background-light {
+	background-color: #edf5e1 !important;
+}
+
+
+.navbar-title {
+	font-family: "Brush Script MT" !important;
+	font-weight: bold !important;
+	font-size: 32px !important;
+}
+
+.main-container {
+	min-width: 90vh;
+}
+
+.display-image {
+	width: 416px;
+}
+.form-choose-file {
+	padding: 8px;
+}
+.make-bill-button, .take-photo {
+	padding: 8px;
+	width: 100px;
+	border-radius: 5px;
+	border-width: 0px;
+	outline: none;
+	background-color: #05386b;
+	color: #edf5e1;
+}
+
+//camera styles
+#video {
+    border: 1px solid black;
+    width: 416px;
+    border-radius: 5px;
+}
+
+#photo {
+    border: 1px solid black;
+    width: 416px;
+    border-radius: 5px;
+}

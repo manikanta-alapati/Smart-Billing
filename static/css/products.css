@@ -1,0 +1,57 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0px;
+}
+
+.text-color {
+	color: #edf5e1 !important;
+}
+.background-primary {
+	background-color: #05386b !important;
+}
+.background-secondary {
+	background-color: #5cdb95 !important;
+}
+.background-secondary-dark {
+	background-color: #379683 !important;
+}
+.background-secondary-light {
+	background-color: #8ee4af !important;
+}
+.background-light {
+	background-color: #edf5e1 !important;
+}
+
+.navbar-title {
+	font-family: "Brush Script MT";
+	font-weight: bold;
+	font-size: 32px;
+}
+
+.heading {
+	font-size: 40px;
+	font-weight: bold;
+	font-family: "Roboto";
+	text-align: center;
+	margin-bottom: 32px;
+}
+
+.card {
+	border-radius: 50px;
+	height: 300px;
+}
+
+.card-image {
+	max-width: 150px;
+}
+
+.card-title {
+	font-size: 18px;
+	font-family: "Roboto";
+	font-weight: 400;
+	text-align: center;
+	padding: 15px;
+	margin: 0px;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Smart Billing</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="static/css/index.css"/>
+		<script type="text/javascript" src="static/js/camera.js"></script>
+
+	</head>
+	<body>
+		
+		<nav class="navbar navbar-expand-lg navbar-dark background-primary">
+			<div class="container">
+			  <a class="navbar-brand navbar-title" href="/">Smart Billing</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			    <div class="navbar-nav ml-auto">
+			      <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+			      <a class="nav-item nav-link" href="/products">Products</a>
+			    </div>
+			  </div>
+			</div>
+		</nav>
+		
+		<div class="container pt-5 pb-5">
+			<div class="row d-flex flex-row justify-content-around">
+				<div class="col-12 col-md-6 order-md-2" >
+					<div class="d-flex flex-column justify-content-center align-items-center">
+						<canvas id="canvas" class="d-none"></canvas>
+						<div class="camera d-none" id="camera">
+						    <video id="video" width="416px" height="416px">Video stream not available.</video>
+						 </div>
+						<img src="static/images/output.jpg" class="display-image d-none" id="photo" alt="The screen capture will appear in this box." />
+						
+					
+							<form method="POST" enctype="multipart/form-data" class="d-flex flex-column justify-content-center align-items-center mt-3">
+								<input type="text" name="image-data" id="image-data" class="d-none">
+								<input type="file" name="input_image" accept="image/*" class="form-choose-file mb-3" id="form-choose-image" />
+								<div class="d-flex flex-row justify-content-center">
+								<input type="submit" value="Make Bill" class="make-bill-button mr-3" style="display:block;margin:auto;"/>
+							<button class="take-photo background-secondary-dark text-color d-none mr-3" id="startbutton">Take photo</button>
+							<button class="btn btn-danger d-none" id="clearbutton">&times; Clear photo</button>
+						</div>
+							</form>
+						
+
+						<script type="text/javascript">
+							{% if post %}
+							console.log('its post');
+							document.getElementById('photo').classList.remove('d-none');
+							document.getElementById('clearbutton').classList.remove('d-none');
+						    {% else %}
+						    console.log('its get');
+						    document.getElementById('camera').classList.remove('d-none');
+						    document.getElementById('startbutton').classList.remove('d-none');
+						    {% endif %}
+						</script>
+
+					</div>
+					
+				</div>
+				<div class="col-12 col-md-6 order-md-1">
+					<h2>Bill</h2>
+					<ul class="list-group">
+					<!--li class="list-group-item list-group-item-action d-flex justify-content-between  align-items-center">
+						surf_excel
+						<span class="badge badge-primary badge-pill background-secondary-dark text-color">1 * Rs 26</span>
+					  </li>
+					
+					  <li class="list-group-item list-group-item-action d-flex justify-content-between  align-items-center">
+						dabur_red_paste
+						<span class="badge badge-primary badge-pill background-secondary-dark text-color">1 * Rs 20</span>
+					  </li>
+					
+					  <li class="list-group-item list-group-item-action d-flex justify-content-between  align-items-center">
+						aashirvaad
+						<span class="badge badge-primary badge-pill background-secondary-dark text-color">1 * Rs 100</span>
+					  </li>
+					
+					  <li class="list-group-item list-group-item-action d-flex justify-content-between  align-items-center">
+						tata_salt
+						<span class="badge badge-primary badge-pill background-secondary-dark text-color">1 * Rs 20</span>
+					  </li>
+					
+					<li class="list-group-item list-group-item-action active background-primary text-color d-flex justify-content-between align-items-center">
+						Total Cost
+						<span class="badge badge-primary badge-pill background-secondary-dark text-color">Rs 166</span>
+					  </li-->
+					{% for key in strings %}
+					  <li class="list-group-item list-group-item-action d-flex justify-content-between  align-items-center">
+						{{strings[key]["name"]}}
+						<span class="badge badge-primary badge-pill background-secondary-dark text-color">{{strings[key]["cost"]}}</span>
+					  </li>
+					{% endfor %}
+					<li class="list-group-item list-group-item-action active background-primary text-color d-flex justify-content-between align-items-center">
+						Total Cost
+						<span class="badge badge-primary badge-pill background-secondary-dark text-color">Rs {{total_cost}}</span>
+					  </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
